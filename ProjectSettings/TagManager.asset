@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - TerrainCol
+  - Enemy
+  - NPC
+  - Interactable
+  - Destructable
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - PlayerWeapon
+  - TerrainLayer
+  - NPC
+  - Enemies
+  - Player
+  - Projectile
+  - EnemyWeapon
+  - EnemyProjectile
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 3625451503
+    locked: 0
+  - name: Wall_Behind
+    uniqueID: 127172253
+    locked: 0
+  - name: Player
+    uniqueID: 2222699045
+    locked: 0
+  - name: Wall_Front
+    uniqueID: 1728688513
+    locked: 0
+  - name: Floating Text
+    uniqueID: 2376320681
+    locked: 0

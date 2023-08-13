@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7b945ab900cedb4b8a301d0ddb14315, type: 3}
+  m_Name: Short Sword
+  m_EditorClassIdentifier: 
+  damage: 6
+  attackSpeed: 0.5
+  sprite: {fileID: 21300000, guid: 4e59779a944131c488ded1cf86582040, type: 3}
+  prefabReference: {fileID: 4071749343663590826, guid: 2b16ec70e88924e45b60141c20facf16, type: 3}
+  animationController: {fileID: 9100000, guid: 467020573825785468f827a13adc3eb0, type: 2}
+  colliderOffcet: {x: 0, y: 0.05}
+  colliderSize: {x: 0.06, y: 0.15}
