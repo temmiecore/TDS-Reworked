@@ -14,7 +14,7 @@ public class BTreeController : Tree
     [HideInInspector] public Rigidbody2D rigidbody;
     [HideInInspector] public CapsuleCollider2D capsuleCollider;
 
-    public EnemyWeaponController enemyWeapon;
+    public NPCWeaponController enemyWeapon;
     public Transform enemyHand;
     public BehaviourTreeType behaviourTreeType;
     public bool isFriendly;
@@ -24,12 +24,13 @@ public class BTreeController : Tree
     public float attackRadius;
     public float attackCooldown;
 
-    [Header("For NPC/Enemies who follow something.")]
+    [Header("- For NPC/Enemies who follow something. -")]
     public Transform followTarget;
     public float followRadius;
 
+    [Header("TARGET")]
     [HideInInspector] public bool isAlerted;
-    [HideInInspector] public Transform target;
+    public Transform target;
     [HideInInspector] public float aggression; /// For target changing
 
     protected override void Start()
@@ -40,6 +41,7 @@ public class BTreeController : Tree
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
+        target = null;
 
         base.Start();
     }

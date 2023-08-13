@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckAlertRange : Node 
+public class CheckAlertRange : Node
 {
     private int layermask;
 
@@ -15,43 +15,20 @@ public class CheckAlertRange : Node
 
     public override NodeState Execute()
     {
-        object t = GetData("target");
-
-        if (t == null)
+        if (tree.target == null || tree.target.Equals(null))
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(tree.npcTransform.position, tree.alertRadius, layermask);
 
             foreach (Collider2D coll in colliders)
             {
-                if (!tree.isFriendly)
+                if (coll.GetComponent<BTreeController>()?.isFriendly == !tree.isFriendly || (!tree.isFriendly && coll.tag == "Player"))
                 {
-                    if (coll.tag == "Player" || coll.tag == "NPC")
-                    {
-                        parent.parent.SetData("target", coll.transform);
-                        tree.animator.SetBool("IsWalking", true);
+                    tree.target = coll.transform;
+                    tree.animator.SetBool("IsWalking", true);
+                    tree.isAlerted = true;
 
-                        tree.target = coll.transform;
-                        tree.isAlerted = true;
-
-                        state = NodeState.SUCCESS;
-                        return state;
-                    }
-                }
-                else
-                {
-                    if (coll.tag == "Enemy")
-                    {
-                        parent.parent.SetData("target", coll.transform);
-                        tree.animator.SetBool("IsWalking", true);
-
-                        tree.target = coll.transform;
-                        tree.isAlerted = true;
-
-                        Debug.Log("found target " + coll.tag);
-
-                        state = NodeState.SUCCESS;
-                        return state;
-                    }
+                    state = NodeState.SUCCESS;
+                    return state;
                 }
             }
 

@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 411abe088ed3cd642a99f79394914b3b, type: 2}
+  tree: {fileID: 2521466502406033713}
 --- !u!61 &2521466501756474189
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -213,6 +214,7 @@ MonoBehaviour:
   followRadius: 0
   isAlerted: 0
   target: {fileID: 0}
+  aggression: 0
 --- !u!114 &2521466502406033741
 MonoBehaviour:
   m_ObjectHideFlags: 0

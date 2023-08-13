@@ -5,7 +5,6 @@ using Pathfinding;
 
 public class TaskApproachTarget: Node
 {
-
     public TaskApproachTarget(BTreeController tree)
     {
         this.tree = tree;
@@ -13,9 +12,7 @@ public class TaskApproachTarget: Node
 
     public override NodeState Execute()
     {
-        Transform targetPosition = (Transform)GetData("target");
-
-        tree.pathfinder.destination = targetPosition.position;
+        tree.pathfinder.destination = tree.target.position;
 
         if (tree.npcTransform.position.x - tree.pathfinder.destination.x > 0)
             tree.spriteRenderer.flipX = true;

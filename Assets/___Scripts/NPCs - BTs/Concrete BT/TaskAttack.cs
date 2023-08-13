@@ -5,8 +5,6 @@ using UnityEngine;
 public class TaskAttack : Node
 {
     private float attackDelay = 0f;
-
-    private Transform target;
     private Vector2 direction;
 
     public TaskAttack(BTreeController tree)
@@ -16,27 +14,27 @@ public class TaskAttack : Node
 
     public override NodeState Execute()
     {
-        if (GetData("target") == null)
+        try
+        {
+            attackDelay += Time.deltaTime;
+
+            if (attackDelay > tree.attackCooldown)
+            {
+                attackDelay = 0f;
+                Attack();
+
+                state = NodeState.SUCCESS;
+                return state;
+            }
+
+            state = NodeState.RUNNING;
+            return state;
+        }
+        catch 
         {
             state = NodeState.FAILURE;
             return state;
         }
-
-        target = (Transform)GetData("target");
-
-        attackDelay += Time.deltaTime;
-
-        if (attackDelay > tree.attackCooldown)
-        {
-            attackDelay = 0f;
-            Attack();
-
-            state = NodeState.SUCCESS;
-            return state;
-        }
-
-        state = NodeState.RUNNING;
-        return state;
     }
 
     public virtual void Attack()
@@ -46,7 +44,7 @@ public class TaskAttack : Node
         else
             tree.spriteRenderer.flipX = false;
 
-        tree.pathfinder.destination = target.position;
+        tree.pathfinder.destination = tree.target.position;
         tree.enemyWeapon.Attack();
     }
 }

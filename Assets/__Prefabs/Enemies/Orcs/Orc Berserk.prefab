@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 49ecdc220766a5e4f8ecacb35d2ec2c0, type: 2}
+  tree: {fileID: 6562477359922647533}
 --- !u!61 &6562477359548797841
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -195,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae752f6b53e4e8c46b5b11c999771665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTransform: {fileID: 0}
+  npcTransform: {fileID: 0}
   pathfinder: {fileID: 0}
   spriteRenderer: {fileID: 0}
   animator: {fileID: 0}
@@ -204,13 +205,16 @@ MonoBehaviour:
   enemyWeapon: {fileID: 6562477359548797840}
   enemyHand: {fileID: 6562477361026366967}
   behaviourTreeType: 0
-  targetTag: Player
+  isFriendly: 0
   alertRadius: 0.8
   ignoreRadius: 5
   attackRadius: 0.32
   attackCooldown: 1
+  followTarget: {fileID: 0}
+  followRadius: 0
   isAlerted: 0
   target: {fileID: 0}
+  aggression: 0
 --- !u!114 &6562477359922647441
 MonoBehaviour:
   m_ObjectHideFlags: 0

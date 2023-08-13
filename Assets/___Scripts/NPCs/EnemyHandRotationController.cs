@@ -4,29 +4,33 @@ using UnityEngine;
 
 public class EnemyHandRotationController : MonoBehaviour
 {
-    private BTreeController enemyTree;
+    private BTreeController tree;
 
     private void Start()
     {
-        enemyTree = GetComponent<BTreeController>();
+        tree = GetComponent<BTreeController>();
     }
 
     private void Update()
     {
-        if (enemyTree.isAlerted)
+        if (tree.isAlerted)
         {
-            Vector2 direction = enemyTree.target.position - enemyTree.npcTransform.position;
-            enemyTree.enemyHand.position = new Vector3(enemyTree.npcTransform.position.x + 0.08f * direction.normalized.x,
-                                            enemyTree.npcTransform.position.y + 0.08f * direction.normalized.y - 0.08f, 0);
+            try
+            {
+                Vector2 direction = tree.target.position - tree.npcTransform.position;
+                tree.enemyHand.position = new Vector3(tree.npcTransform.position.x + 0.08f * direction.normalized.x,
+                                                tree.npcTransform.position.y + 0.08f * direction.normalized.y - 0.08f, 0);
 
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Quaternion handRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            enemyTree.enemyHand.rotation = handRotation;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                Quaternion handRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                tree.enemyHand.rotation = handRotation;
 
-            if (angle > 90f || angle < -90f)
-            { enemyTree.enemyHand.localScale = new Vector3(1, -1, 1); enemyTree.spriteRenderer.flipX = true; }
-            else
-            { enemyTree.enemyHand.localScale = new Vector3(1, 1, 1); enemyTree.spriteRenderer.flipX = false; }
+                if (angle > 90f || angle < -90f)
+                { tree.enemyHand.localScale = new Vector3(1, -1, 1); tree.spriteRenderer.flipX = true; }
+                else
+                { tree.enemyHand.localScale = new Vector3(1, 1, 1); tree.spriteRenderer.flipX = false; }
+            }
+            catch { }
         }
     }
 }
