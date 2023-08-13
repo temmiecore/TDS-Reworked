@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer), typeof(Animator), typeof(BoxCollider2D))]
-public class EnemyWeaponController : MonoBehaviour
+public class NPCWeaponController : MonoBehaviour
 {
     private Animator animator;
 
     public IWeaponData data;
+    public BTreeController tree;
 
     private void Start()
     {
@@ -34,31 +35,32 @@ public class EnemyWeaponController : MonoBehaviour
         if (data == null)
             return;
 
-        if (data is MeleeWeaponData)
-            animator.SetTrigger("Attack");
-        else if (data is RangeWeaponData rangeData)
+        try
         {
-            Vector2 direction = GameManager.Instance.player.transform.position - transform.position;
-            float rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            if (data is MeleeWeaponData)
+                animator.SetTrigger("Attack");
+            else if (data is RangeWeaponData rangeData)
+            {
+                Vector2 direction = tree.target.position - transform.position;
+                float rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
 
-            rangeData.InstantiateProjectile(transform.position,
-                                            rotation - 90f,
-                                            direction, ProjectileType.enemyShot);
+                rangeData.InstantiateProjectile(transform.position,
+                                                rotation - 90f,
+                                                direction, ProjectileType.enemyShot);
+            }
         }
-
+        catch { }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("damn");
-
-        /// TODO: add push to attacks
-        /// Perhaps make so that everyone can hurt everything with a Health() component? So enemies can kill each other accidentally. DONE
         if (data == null)
             return;
 
-        if (data is MeleeWeaponData)
+        if (!tree.isFriendly && (collision.tag == "Player" || collision.GetComponent<BTreeController>()?.isFriendly == !tree.isFriendly))
+            collision.GetComponent<Health>()?.RecieveDamage(data.damage);
+        else if (tree.isFriendly && collision.GetComponent<BTreeController>()?.isFriendly == !tree.isFriendly)
             collision.GetComponent<Health>()?.RecieveDamage(data.damage);
     }
 }

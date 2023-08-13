@@ -16,14 +16,14 @@ TagManager:
   - 
   - Water
   - UI
-  - PlayerWeapon
+  - Weapon
   - TerrainLayer
-  - NPC
+  - FriendlyNPC
   - Enemies
   - Player
   - Projectile
-  - EnemyWeapon
-  - EnemyProjectile
+  - 
+  - 
   - 
   - 
   - 

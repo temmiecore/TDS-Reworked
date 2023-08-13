@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckIgnoreRange : Node 
+public class CheckIgnoreRange : Node
 {
-
     public CheckIgnoreRange(BTreeController tree)
     {
         this.tree = tree;
@@ -12,25 +11,23 @@ public class CheckIgnoreRange : Node
 
     public override NodeState Execute()
     {
-        object t = GetData("target");
-
-        if (t == null)
+        try
         {
-            state = NodeState.FAILURE;
+            if (Vector2.Distance(tree.npcTransform.position, tree.target.position) > tree.ignoreRadius)
+            {
+                tree.isAlerted = false;
+
+                state = NodeState.FAILURE;
+                return state;
+            }
+
+            state = NodeState.SUCCESS;
             return state;
         }
-
-        Transform targetPosition = (Transform)t;
-        
-        if (Vector2.Distance(tree.npcTransform.position, targetPosition.position) > tree.ignoreRadius)
+        catch
         {
-            tree.isAlerted = false;
-
-            state = NodeState.FAILURE;
+            state = NodeState.SUCCESS;
             return state;
         }
-
-        state = NodeState.SUCCESS;
-        return state;
     }
 }
