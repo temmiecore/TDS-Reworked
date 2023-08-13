@@ -22,7 +22,7 @@ public class CheckIgnoreRange : Node
 
         Transform targetPosition = (Transform)t;
         
-        if (Vector2.Distance(tree.enemyTransform.position, targetPosition.position) > tree.ignoreRadius)
+        if (Vector2.Distance(tree.npcTransform.position, targetPosition.position) > tree.ignoreRadius)
         {
             tree.isAlerted = false;
 

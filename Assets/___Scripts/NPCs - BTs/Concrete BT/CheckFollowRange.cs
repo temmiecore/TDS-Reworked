@@ -2,31 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckAttackRange : Node
+public class CheckFollowRange : Node
 {
-    private int layermask;
+    private Transform followTarget;
 
-    public CheckAttackRange(BTreeController tree)
+    public CheckFollowRange(BTreeController tree)
     {
         this.tree = tree;
 
-        layermask = LayerMask.GetMask("Player", "Enemies", "NPC");
+        followTarget = tree.followTarget;
     }
 
     public override NodeState Execute()
     {
-        object t = GetData("target");
-
-        if (t == null)
+        if (followTarget == null)
         {
             state = NodeState.FAILURE;
             return state;
         }
 
-        Transform target = (Transform)t;
-
-        if (Vector2.Distance(tree.npcTransform.position, target.position) < tree.attackRadius)
+        if (Vector2.Distance(tree.npcTransform.position, followTarget.position) > tree.followRadius)
         {
+            tree.animator.SetBool("IsWalking", true);
+
             state = NodeState.SUCCESS;
             return state;
         }

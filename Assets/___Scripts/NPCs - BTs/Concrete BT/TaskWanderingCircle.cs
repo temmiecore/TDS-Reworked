@@ -15,7 +15,7 @@ public class TaskWanderingCircle : Node
     public TaskWanderingCircle(BTreeController tree)
     {
         this.tree = tree;
-        originalPoint = tree.enemyTransform.position;
+        originalPoint = tree.npcTransform.position;
     }
 
     public override NodeState Execute()
@@ -46,7 +46,7 @@ public class TaskWanderingCircle : Node
             }
         }
 
-        if (tree.enemyTransform.position.x - tree.pathfinder.destination.x > 0)
+        if (tree.npcTransform.position.x - tree.pathfinder.destination.x > 0)
             tree.spriteRenderer.flipX = true;
         else
             tree.spriteRenderer.flipX = false;

@@ -1,28 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 
-public class TaskApproachTarget: Node
+public class TaskFollowTarget : Node
 {
-
-    public TaskApproachTarget(BTreeController tree)
+    public TaskFollowTarget(BTreeController tree)
     {
         this.tree = tree;
     }
 
     public override NodeState Execute()
     {
-        Transform targetPosition = (Transform)GetData("target");
-
-        tree.pathfinder.destination = targetPosition.position;
+        tree.pathfinder.destination = tree.followTarget.position;
 
         if (tree.npcTransform.position.x - tree.pathfinder.destination.x > 0)
             tree.spriteRenderer.flipX = true;
         else
             tree.spriteRenderer.flipX = false;
 
-        state = NodeState.RUNNING;
+        state = NodeState.SUCCESS;
         return state;
     }
 }

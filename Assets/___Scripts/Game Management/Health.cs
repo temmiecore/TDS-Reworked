@@ -63,6 +63,8 @@ public class Health : MonoBehaviour
 
     public void Heal(float healAmount)
     {
+        GameManager.Instance.InstantiateFloatingText("+" + healAmount, Color.green, 1f, Random.Range(2, 5), transform);
+
         HP += healAmount;
 
         if (HP > maxHP)

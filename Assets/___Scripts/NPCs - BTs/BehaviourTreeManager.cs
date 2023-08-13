@@ -22,6 +22,10 @@ public class BehaviourTreeManager : MonoBehaviour
                             new CheckIgnoreRange(tree),
                             new TaskApproachTarget(tree)
                         }),
+                        new Sequence(new List<Node>{ 
+                            new CheckFollowRange(tree),
+                            new TaskFollowTarget(tree)
+                        }),
                         new TaskWanderingCircle(tree)
                     });
 
@@ -40,6 +44,10 @@ public class BehaviourTreeManager : MonoBehaviour
                             new CheckAlertRange(tree),
                             new CheckIgnoreRange(tree),
                             new TaskApproachTarget(tree)
+                        }),
+                        new Sequence(new List<Node>{
+                            new CheckFollowRange(tree),
+                            new TaskFollowTarget(tree)
                         }),
                         new TaskWandering(tree)
                     });

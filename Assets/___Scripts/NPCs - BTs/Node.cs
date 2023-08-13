@@ -46,6 +46,8 @@ public class Node
     public void SetData(string key, object value)
     { dataContext[key] = value; }
 
+    /// The "GetData" system is not needed since every Node has a reference to 
+    /// it's tree, where data is stored. But I can't be bothered to remove it.
     public object GetData(string key)
     {
         object value = null;

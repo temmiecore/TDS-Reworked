@@ -51,15 +51,14 @@ public class EnemyWeaponController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("damn");
+
         /// TODO: add push to attacks
-        /// Perhaps make so that everyone can hurt everything with a Health() component? So enemies can kill each other, etc.
+        /// Perhaps make so that everyone can hurt everything with a Health() component? So enemies can kill each other accidentally. DONE
         if (data == null)
             return;
 
         if (data is MeleeWeaponData)
-        {
-            if (collision.tag == "Player" || collision.tag == "NPC")
-                collision.GetComponent<Health>().RecieveDamage(data.damage);
-        }
+            collision.GetComponent<Health>()?.RecieveDamage(data.damage);
     }
 }

@@ -7,7 +7,7 @@ using Pathfinding;
 [RequireComponent(typeof(Animator), typeof(Rigidbody2D), typeof(CapsuleCollider2D))]
 public class BTreeController : Tree
 {
-    [HideInInspector] public Transform enemyTransform;
+    [HideInInspector] public Transform npcTransform;
     [HideInInspector] public AIPath pathfinder;
     [HideInInspector] public SpriteRenderer spriteRenderer;
     [HideInInspector] public Animator animator;
@@ -17,19 +17,24 @@ public class BTreeController : Tree
     public EnemyWeaponController enemyWeapon;
     public Transform enemyHand;
     public BehaviourTreeType behaviourTreeType;
-    public string targetTag;
+    public bool isFriendly;
 
     public float alertRadius;
     public float ignoreRadius;
     public float attackRadius;
     public float attackCooldown;
 
+    [Header("For NPC/Enemies who follow something.")]
+    public Transform followTarget;
+    public float followRadius;
+
     [HideInInspector] public bool isAlerted;
     [HideInInspector] public Transform target;
+    [HideInInspector] public float aggression; /// For target changing
 
     protected override void Start()
     {
-        enemyTransform = GetComponent<Transform>();
+        npcTransform = GetComponent<Transform>();
         pathfinder = GetComponent<AIPath>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();

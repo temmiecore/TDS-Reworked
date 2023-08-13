@@ -54,7 +54,7 @@ public class TaskWandering : Node
         var point = Random.insideUnitSphere * 0.32f;
 
         point.z = 0;
-        point += tree.enemyTransform.position;
+        point += tree.npcTransform.position;
         return point;
     }
 

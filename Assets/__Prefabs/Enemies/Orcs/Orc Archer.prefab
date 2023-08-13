@@ -61,7 +61,8 @@ MonoBehaviour:
   enemyWeapon: {fileID: 3201765978603081775}
   enemyHand: {fileID: 3201765979539816008}
   behaviourTreeType: 0
-  alertRadius: 3
+  targetTag: Player
+  alertRadius: 1
   ignoreRadius: 5
   attackRadius: 1
   attackCooldown: 1
@@ -258,6 +259,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 20
   HP: 0
+  isDamageable: 0
+  lives: 0
 --- !u!114 &3201765978498781737
 MonoBehaviour:
   m_ObjectHideFlags: 0

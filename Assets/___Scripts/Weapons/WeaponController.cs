@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class WeaponController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     public IWeaponData data;
+
+    public event EventHandler OnDamageDealt;
 
     private void Start()
     {
@@ -69,7 +72,10 @@ public class WeaponController : MonoBehaviour
         if (data is MeleeWeaponData)
         {
             if (collision.tag == "Enemy" || collision.tag == "Destructable")
+            {
                 collision.GetComponent<Health>().RecieveDamage(data.damage + GameManager.Instance.player.additionalDamage);
+                OnDamageDealt?.Invoke(this, EventArgs.Empty);
+            }
         }
     }
 }

@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae752f6b53e4e8c46b5b11c999771665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTransform: {fileID: 0}
+  npcTransform: {fileID: 0}
   pathfinder: {fileID: 0}
   spriteRenderer: {fileID: 0}
   animator: {fileID: 0}
@@ -204,10 +204,13 @@ MonoBehaviour:
   enemyWeapon: {fileID: 2521466501756474188}
   enemyHand: {fileID: 2521466503510506795}
   behaviourTreeType: 0
-  alertRadius: 2
+  isFriendly: 0
+  alertRadius: 0.8
   ignoreRadius: 5
   attackRadius: 0.32
   attackCooldown: 1
+  followTarget: {fileID: 0}
+  followRadius: 0
   isAlerted: 0
   target: {fileID: 0}
 --- !u!114 &2521466502406033741
@@ -401,6 +404,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 30
   HP: 0
+  isDamageable: 0
+  lives: 0
 --- !u!114 &2521466502406033738
 MonoBehaviour:
   m_ObjectHideFlags: 0

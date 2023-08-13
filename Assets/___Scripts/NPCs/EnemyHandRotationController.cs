@@ -15,9 +15,9 @@ public class EnemyHandRotationController : MonoBehaviour
     {
         if (enemyTree.isAlerted)
         {
-            Vector2 direction = enemyTree.target.position - enemyTree.enemyTransform.position;
-            enemyTree.enemyHand.position = new Vector3(enemyTree.enemyTransform.position.x + 0.08f * direction.normalized.x,
-                                            enemyTree.enemyTransform.position.y + 0.08f * direction.normalized.y - 0.08f, 0);
+            Vector2 direction = enemyTree.target.position - enemyTree.npcTransform.position;
+            enemyTree.enemyHand.position = new Vector3(enemyTree.npcTransform.position.x + 0.08f * direction.normalized.x,
+                                            enemyTree.npcTransform.position.y + 0.08f * direction.normalized.y - 0.08f, 0);
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion handRotation = Quaternion.AngleAxis(angle, Vector3.forward);

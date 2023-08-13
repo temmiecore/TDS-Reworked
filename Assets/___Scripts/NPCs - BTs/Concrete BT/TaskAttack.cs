@@ -46,6 +46,7 @@ public class TaskAttack : Node
         else
             tree.spriteRenderer.flipX = false;
 
+        tree.pathfinder.destination = target.position;
         tree.enemyWeapon.Attack();
     }
 }
