@@ -27,21 +27,27 @@ public class GameManager : MonoBehaviour
         /// ADD DontDestroyOnLoad FOR EVERY NON-DESTRUCTABLE OBJECTS
     }
 
-    /// References - references to objects in scene
+    [Header("Player class")]
+    public PlayerClass playerClass;
+
     [Header("References assigned on Start()")]
     public Player player;
     public PlayerMover playerMover;
     public Inventory inventory;
     public ItemUseController itemUseController;
+    public ClassManager classManager;
 
     [Header("References assigned in inspector")]
-    public FloatingText floatingTextObject;
     public Health playerHealthComponent;
-    public BehaviourTreeManager behaviourTreeManager;
     public WeaponController playerWeaponController;
+    public Animator playerAnimator;
 
+    [Header("BTM has to be assigned in the inspector")]
+    public BehaviourTreeManager behaviourTreeManager;
 
-    /// Resources - sprite sheets, data tables, etc.
+    [Header("Floating text prefab")]
+    public FloatingText floatingTextObject;
+
     [Header("Items prefabs lists. Note - index of the item = index of the enum value")]
     public List<GameObject> consumablePrefabs;
     public List<GameObject> artefactPrefabs;
@@ -53,6 +59,9 @@ public class GameManager : MonoBehaviour
         inventory = FindObjectOfType<Inventory>();
         playerMover = FindObjectOfType<PlayerMover>();
         itemUseController = FindObjectOfType<ItemUseController>();
+        classManager = GetComponent<ClassManager>();
+
+        classManager.ApplyClassParameters(playerClass);
     }
 
     public void SaveData()

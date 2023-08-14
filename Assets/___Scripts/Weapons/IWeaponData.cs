@@ -10,5 +10,9 @@ public abstract class IWeaponData : ScriptableObject
 
     public GameObject prefabReference;
 
+    public int requiredStrength;
+    public int requiredDexterity;
+    public int requiredIntelligence;
+
     public abstract void Drop();
 }

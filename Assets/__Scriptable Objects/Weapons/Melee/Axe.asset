@@ -16,6 +16,9 @@ MonoBehaviour:
   attackSpeed: 0.5
   sprite: {fileID: 21300000, guid: 5909b0f9fcff2dd409053f5026e1903a, type: 3}
   prefabReference: {fileID: 1341051032216835786, guid: b1ba8387ca1c9c8419ab996702e43825, type: 3}
+  requiredStrength: 5
+  requiredDexterity: 0
+  requiredIntelligence: 0
   animationController: {fileID: 9100000, guid: 467020573825785468f827a13adc3eb0, type: 2}
   colliderOffcet: {x: 0, y: 0.045}
   colliderSize: {x: 0.09, y: 0.08}

@@ -49,6 +49,12 @@ public class WeaponController : MonoBehaviour
 
     public void Attack()
     {
+        if (CheckParameters())
+        {
+            GameManager.Instance.InstantiateFloatingText("I'm not skilled enough to use this.", Color.white, 1f, 1, GameManager.Instance.player.transform);
+            return;
+        }
+
         if (data == null)
             return;
 
@@ -71,5 +77,18 @@ public class WeaponController : MonoBehaviour
             collision.GetComponent<Health>()?.RecieveDamage(data.damage + GameManager.Instance.player.additionalDamage);
             OnDamageDealt?.Invoke(this, EventArgs.Empty);
         }
+    }
+
+    /// If required parameter is higher of player's parameter, weapon can't be used.
+    private bool CheckParameters()
+    {
+        if (data.requiredStrength > GameManager.Instance.player.strength)
+            return true;
+        if (data.requiredDexterity > GameManager.Instance.player.dexterity)
+            return true;
+        if (data.requiredIntelligence > GameManager.Instance.player.intelligence)
+            return true;
+
+        return false;
     }
 }

@@ -5,28 +5,46 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public class Player: MonoBehaviour
 {
-    /// PlayerMover properties
+    [Header("PlayerMover properties")]
     public Transform hand;
     public float handLength;
 
-    public float additionalDamage;
+    [HideInInspector] public float additionalDamage;
+
+    [Header("Mana")]
+    public int maxMana;
+    public int mana;
+
+    private float manaDelay;
+
+    [Header("Player parameters")]
+    public int vitality;
+    public int strength;
+    public int wisdom;
+    public int dexterity;
+    public int intelligence;
 
     void Start()
     {
-
+        
     }
 
     void Update()
     {
         
     }
-}
 
+    void ManaRestoration()
+    {
+        manaDelay += Time.deltaTime;
 
-public enum PlayerClass
-{
-    Knight,
-    Archer,
-    Mage,
-    /// ...
+        if (manaDelay > 1f)
+        {
+            manaDelay = 0f;
+            mana += 1;
+        }
+
+        if (mana > maxMana)
+            mana = maxMana;
+    }
 }

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ccaec884da46c54dbfd35a08f965037, type: 3}
+  m_Name: Warden
+  m_EditorClassIdentifier: 
+  vitality: 10
+  strength: 12
+  wisdom: 6
+  dexterity: 9
+  intelligence: 4
+  animatorController: {fileID: 9100000, guid: c0c60128b20eb824e97df69cd120a045, type: 2}

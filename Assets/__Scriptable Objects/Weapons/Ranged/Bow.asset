@@ -16,6 +16,8 @@ MonoBehaviour:
   attackSpeed: 1
   sprite: {fileID: 21300000, guid: f8570ccbd5f25ba478244f3ba505e2af, type: 3}
   prefabReference: {fileID: 3182283552126333820, guid: 0c30dccfc197e4a498d650a759731a85, type: 3}
+  requiredStrength: 0
+  requiredDexterity: 10
+  requiredIntelligence: 0
   projectileSpeed: 70
   projectilePrefab: {fileID: 7405347522919920059, guid: 4aa57deeab050884cbfaa37c86bef04a, type: 3}
-  type: 0
