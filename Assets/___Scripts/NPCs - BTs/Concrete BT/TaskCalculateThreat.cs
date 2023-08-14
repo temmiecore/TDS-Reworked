@@ -24,14 +24,6 @@ public class TaskCalculateThreat : Node
         if (highestThreat.Value - currentThreat > 5)
             tree.target = highestThreat.Key;
 
-        if (tree.name == "Orc Grunt (95)")
-        {
-            Debug.Log("----------------------------------------");
-            Debug.Log("Highest threat = " + highestThreat.Key.name);
-            foreach (KeyValuePair<Transform, float> pair in tree.threatList)
-                Debug.Log(pair.Key.name + " " + pair.Value);
-        }
-
         state = NodeState.FAILURE;
         return state;
     }
