@@ -29,9 +29,9 @@ public class BTreeController : Tree
     public float followRadius;
 
     [Header("TARGET")]
-    [HideInInspector] public bool isAlerted;
     public Transform target;
-    [HideInInspector] public float aggression; /// For target changing
+    public Dictionary<Transform, float> threatList;
+    public List<BTreeController> attackersList;
 
     protected override void Start()
     {
@@ -42,6 +42,7 @@ public class BTreeController : Tree
         rigidbody = GetComponent<Rigidbody2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         target = null;
+        threatList = new Dictionary<Transform, float>();
 
         base.Start();
     }

@@ -55,11 +55,9 @@ public class WeaponController : MonoBehaviour
         if (data is MeleeWeaponData)
             animator.SetTrigger("Attack");
         else if (data is RangeWeaponData rangeData)
-        {
-            rangeData.InstantiateProjectile(transform.position,
-                                            GameManager.Instance.playerMover.handToMouseRotation - 90f,
-                                            GameManager.Instance.playerMover.handToMouseDirection, ProjectileType.playerShot);
-        }
+            rangeData.InstantiateProjectile(transform.position, 
+                GameManager.Instance.playerMover.handToMouseRotation - 90f, 
+                GameManager.Instance.playerMover.handToMouseDirection);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

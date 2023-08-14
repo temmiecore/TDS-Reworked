@@ -35,22 +35,15 @@ public class NPCWeaponController : MonoBehaviour
         if (data == null)
             return;
 
-        try
+        if (data is MeleeWeaponData)
+            animator.SetTrigger("Attack");
+        else if (data is RangeWeaponData rangeData)
         {
-            if (data is MeleeWeaponData)
-                animator.SetTrigger("Attack");
-            else if (data is RangeWeaponData rangeData)
-            {
-                Vector2 direction = tree.target.position - transform.position;
-                float rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-
-                rangeData.InstantiateProjectile(transform.position,
-                                                rotation - 90f,
-                                                direction, ProjectileType.enemyShot);
-            }
+            Vector2 direction = tree.target.position - transform.position;
+            float rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            rangeData.InstantiateProjectile(transform.position, rotation - 90f, direction, tree);
         }
-        catch { }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -59,8 +52,8 @@ public class NPCWeaponController : MonoBehaviour
             return;
 
         if (!tree.isFriendly && (collision.tag == "Player" || collision.GetComponent<BTreeController>()?.isFriendly == !tree.isFriendly))
-            collision.GetComponent<Health>()?.RecieveDamage(data.damage);
+            collision.GetComponent<Health>()?.RecieveDamage(data.damage, tree);
         else if (tree.isFriendly && collision.GetComponent<BTreeController>()?.isFriendly == !tree.isFriendly)
-            collision.GetComponent<Health>()?.RecieveDamage(data.damage);
+            collision.GetComponent<Health>()?.RecieveDamage(data.damage, tree);
     }
 }

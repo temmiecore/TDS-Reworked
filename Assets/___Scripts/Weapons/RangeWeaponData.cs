@@ -13,15 +13,31 @@ public class RangeWeaponData : IWeaponData
         Instantiate(prefabReference, GameManager.Instance.player.transform.position, GameManager.Instance.player.transform.rotation);
     }
 
-    public void InstantiateProjectile(Vector3 position, float rotationAngle, Vector2 direction, ProjectileType type)
+    public void InstantiateProjectile(Vector3 position, float rotationAngle, Vector2 direction)
     {
         GameObject projectile = Instantiate(projectilePrefab, position, Quaternion.AngleAxis(rotationAngle, Vector3.forward));
 
-        //projectile.transform.rotation = Quaternion.AngleAxis(rotationAngle, Vector3.forward);
+        Projectile script = projectile.GetComponent<Projectile>();
+        script.damage = damage;
+        script.type = ProjectileType.playerShot;
+
+        Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
+        projectileRb.AddForce(direction.normalized * projectileSpeed);
+    }
+
+    public void InstantiateProjectile(Vector3 position, float rotationAngle, Vector2 direction, BTreeController tree)
+    {
+        GameObject projectile = Instantiate(projectilePrefab, position, Quaternion.AngleAxis(rotationAngle, Vector3.forward));
 
         Projectile script = projectile.GetComponent<Projectile>();
-        script.damage = this.damage;
-        script.type = type;
+        script.damage = damage;
+
+        if (tree.isFriendly)
+            script.type = ProjectileType.npcShot;
+        else
+            script.type = ProjectileType.enemyShot;
+
+        script.tree = tree;
 
         Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
         projectileRb.AddForce(direction.normalized * projectileSpeed);

@@ -47,10 +47,40 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void RecieveDamage(float damageAmount, BTreeController damageDealer)
+    {
+        if (immunityDelay > immunityCooldown && isDamageable)
+        {
+            immunityDelay = 0f;
+
+            HP -= damageAmount;
+
+            GameManager.Instance.InstantiateFloatingText("-" + damageAmount, Color.red, 1f, Random.Range(2, 5), transform);
+
+            animator?.SetTrigger("RecieveDamage");
+            
+            BTreeController tree = GetComponent<BTreeController>();
+            tree.threatList[damageDealer.transform] += 1;
+
+            if (HP <= 0)
+            { 
+                HP = 0;
+
+                /// This is awful
+                foreach (BTreeController attacker in tree.attackersList)
+                {
+                    attacker.target = null;
+                    attacker.threatList.Remove(transform);
+                    attacker.attackersList.Remove(tree);
+                }
+
+                Die(); 
+            }
+        }
+    }
+
     public void Die()
     {
-        /// TODO: Create a component that will drop stuff on Enemies' death. Or explode them, I don't know. 
-
         lives--;
         if (lives <= 0)
             Destroy(gameObject);

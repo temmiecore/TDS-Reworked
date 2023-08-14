@@ -13,12 +13,15 @@ public class BehaviourTreeManager : MonoBehaviour
                 {
                     Node root = new Selector(new List<Node>
                     {
-                        new Sequence(new List<Node>{
-                                new CheckAttackRange(tree),
-                                new TaskAttack(tree)
+                        new Sequence(new List<Node>{ 
+                            new CheckAlert(tree),
+                            new TaskCalculateThreat(tree)
                         }),
                         new Sequence(new List<Node>{
-                            new CheckAlertRange(tree),
+                            new CheckAttackRange(tree),
+                            new TaskAttack(tree)
+                        }),
+                        new Sequence(new List<Node>{
                             new CheckIgnoreRange(tree),
                             new TaskApproachTarget(tree)
                         }),
@@ -37,11 +40,14 @@ public class BehaviourTreeManager : MonoBehaviour
                     Node root = new Selector(new List<Node>
                     {
                         new Sequence(new List<Node>{
-                                new CheckAttackRange(tree),
-                                new TaskAttack(tree)
+                            new CheckAlert(tree),
+                            new TaskCalculateThreat(tree)
                         }),
                         new Sequence(new List<Node>{
-                            new CheckAlertRange(tree),
+                            new CheckAttackRange(tree),
+                            new TaskAttack(tree)
+                        }),
+                        new Sequence(new List<Node>{
                             new CheckIgnoreRange(tree),
                             new TaskApproachTarget(tree)
                         }),

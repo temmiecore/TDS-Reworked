@@ -12,6 +12,12 @@ public class TaskApproachTarget: Node
 
     public override NodeState Execute()
     {
+        if (tree.target == null)
+        {
+            state = NodeState.FAILURE;
+            return state;
+        }
+
         tree.pathfinder.destination = tree.target.position;
 
         if (tree.npcTransform.position.x - tree.pathfinder.destination.x > 0)
