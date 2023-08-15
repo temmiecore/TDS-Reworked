@@ -11,7 +11,7 @@ public class TaskFollowTarget : Node
 
     public override NodeState Execute()
     {
-        tree.pathfinder.destination = tree.followTarget.position;
+        tree.pathfinder.destination = tree.followTarget.position + (tree.npcTransform.position - tree.followTarget.position).normalized * 0.24f;
 
         if (tree.npcTransform.position.x - tree.pathfinder.destination.x > 0)
             tree.spriteRenderer.flipX = true;

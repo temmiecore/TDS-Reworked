@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,10 +15,19 @@ public class Inventory : MonoBehaviour
 
     [HideInInspector] public bool isActive;
 
-    [Header("Item Cells")]
+    public TextMeshProUGUI playerClass;
+    public TextMeshProUGUI playerParams;
+
+    [Header("Item cells")]
     public Image[] consumableCells;
     public Image[] artefactCells;
     public Image[] spellCells;
+
+    [Header("Empty cell sprites")]
+    public Sprite weaponCellSprite;
+    public Sprite artefactCellSprite;
+    public Sprite consumableCellSprite;
+
 
     private void Start()
     {
@@ -29,10 +39,12 @@ public class Inventory : MonoBehaviour
     public void ResetInventory()
     {
         foreach (Image cell in consumableCells)
-            cell.sprite = null;
+            cell.sprite = consumableCellSprite;
 
         foreach (Image cell in artefactCells)
-            cell.sprite = null;
+            cell.sprite = artefactCellSprite;
+
+        /// same for weapon cells
     }
 
     public void UpdateInventory()
@@ -42,12 +54,21 @@ public class Inventory : MonoBehaviour
         int i = 0;
 
         foreach (IConsumableData item in consumables)
-        { consumableCells[i].sprite = item.sprite; i++; }
+        { consumableCells[i].sprite = item.sprite; consumableCells[i].SetNativeSize(); i++; }
 
         i = 0;
 
         foreach (IArtefactData item in artefacts)
-        { artefactCells[i].sprite = item.sprite; i++; }
+        { artefactCells[i].sprite = item.sprite; artefactCells[i].SetNativeSize(); i++; }
+
+        /// same for weapon cells
+
+        playerClass.text = GameManager.Instance.playerClass.name;
+        playerParams.text = $"Vitality: {GameManager.Instance.player.vitality}\n" +
+            $"Wisdom: {GameManager.Instance.player.wisdom}\n" +
+            $"Strength: {GameManager.Instance.player.strength}\n" +
+            $"Dexterity: {GameManager.Instance.player.dexterity}\n" +
+            $"Intelligence: {GameManager.Instance.player.intelligence}";
     }
 
     public void OnPickUp(IConsumableData item)
@@ -65,7 +86,7 @@ public class Inventory : MonoBehaviour
         UpdateInventory();
     }
 
-    public void OnDrop(byte itemType, int cellId) /// 0 - Consumable, 1 - Artefact
+    public void OnDrop(byte itemType, int cellId) /// 0 - Consumable, 1 - Artefact, 2 - Weapon
     {
         if (itemType == 0)
         {
@@ -100,7 +121,7 @@ public class Inventory : MonoBehaviour
     public void ToggleInventory()
     {
         if (canvasGroup.alpha == 0f)
-        { isActive = true; canvasGroup.alpha = 1f; }
+        { isActive = true; canvasGroup.alpha = 1f; UpdateInventory(); }
         else
         { isActive = false; canvasGroup.alpha = 0f; }
     }

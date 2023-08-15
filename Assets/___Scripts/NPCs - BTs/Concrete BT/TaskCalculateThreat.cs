@@ -21,7 +21,7 @@ public class TaskCalculateThreat : Node
         KeyValuePair<Transform, float> highestThreat = tree.threatList.OrderBy(pair => pair.Value).Last();
         float currentThreat = tree.threatList[tree.target];
 
-        if (highestThreat.Value - currentThreat > 5)
+        if (highestThreat.Value - currentThreat > 3)
             tree.target = highestThreat.Key;
 
         state = NodeState.FAILURE;

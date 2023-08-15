@@ -20,6 +20,12 @@ public class TaskWanderingCircle : Node
 
     public override NodeState Execute()
     {
+        if (tree.followTarget != null)
+        {
+            state = NodeState.RUNNING;
+            return state;
+        }
+
         if (waiting)
         {
             tree.animator.SetBool("IsWalking", false);
@@ -42,6 +48,7 @@ public class TaskWanderingCircle : Node
             }
             else if (tree.pathfinder.reachedEndOfPath)
             {
+                originalPoint = tree.npcTransform.position;
                 waiting = true;
             }
         }
@@ -50,6 +57,7 @@ public class TaskWanderingCircle : Node
             tree.spriteRenderer.flipX = true;
         else
             tree.spriteRenderer.flipX = false;
+
 
         state = NodeState.RUNNING;
         return state;

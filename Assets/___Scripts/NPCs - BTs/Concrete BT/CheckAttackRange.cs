@@ -15,6 +15,7 @@ public class CheckAttackRange : Node
         {
             if (Vector2.Distance(tree.npcTransform.position, tree.target.position) < tree.attackRadius)
             {
+                tree.pathfinder.destination = tree.target.position;
                 state = NodeState.SUCCESS;
                 return state;
             }

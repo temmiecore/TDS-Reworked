@@ -20,12 +20,14 @@ public class CheckFollowRange : Node
         if (Vector2.Distance(tree.npcTransform.position, tree.followTarget.position) > tree.followRadius)
         {
             tree.animator.SetBool("IsWalking", true);
-
             state = NodeState.SUCCESS;
             return state;
         }
-
-        state = NodeState.FAILURE;
-        return state;
+        else
+        {
+            tree.animator.SetBool("IsWalking", false);
+            state = NodeState.FAILURE;
+            return state;
+        }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63b899a857c2064cbfa11c28063899f, type: 3}
   m_Name: Small fireball
   m_EditorClassIdentifier: 
-  manaUsage: 1
+  manaUsage: 5
   requiredIntelligence: 1
   fireballPrefab: {fileID: 2286955515501694638, guid: 0143c2b995d4a8e4d95c51c2c563b2f3, type: 3}
   fireballSpeed: 70
