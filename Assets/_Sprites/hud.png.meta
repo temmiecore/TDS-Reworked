@@ -14,6 +14,9 @@ TextureImporter:
   - first:
       213: 7436860926580171409
     second: hud_3
+  - first:
+      213: -5356235205854507632
+    second: hud_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -194,6 +197,27 @@ TextureImporter:
       bones: []
       spriteID: 1922bcc4c99053760800000000000000
       internalID: 7436860926580171409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_4
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 3
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09dc9957574daa5b0800000000000000
+      internalID: -5356235205854507632
       vertices: []
       indices: 
       edges: []

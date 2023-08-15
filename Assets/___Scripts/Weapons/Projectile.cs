@@ -13,11 +13,13 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (type == ProjectileType.playerShot && (collision.tag == "Enemy" || collision.tag == "Destructable"))
-            collision.GetComponent<Health>()?.RecieveDamage(damage);
+        { collision.GetComponent<Health>()?.RecieveDamage(damage); Destroy(gameObject); }
         else if (type == ProjectileType.enemyShot && (collision.tag == "Player" || collision.tag == "NPC"))
-            collision.GetComponent<Health>()?.RecieveDamage(damage, tree);
+        { collision.GetComponent<Health>()?.RecieveDamage(damage, tree); Destroy(gameObject); }
         else if (type == ProjectileType.npcShot && collision.tag == "Enemy")
-            collision.GetComponent<Health>()?.RecieveDamage(damage, tree);
-        Destroy(gameObject);
+        { collision.GetComponent<Health>()?.RecieveDamage(damage, tree); Destroy(gameObject); }
+
+        else if (collision.tag == "TerrainCol")
+            Destroy(gameObject);
     }
 }

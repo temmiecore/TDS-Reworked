@@ -49,21 +49,23 @@ public class WeaponController : MonoBehaviour
 
     public void Attack()
     {
+        if (data == null)
+            return;
+
         if (CheckParameters())
         {
             GameManager.Instance.InstantiateFloatingText("I'm not skilled enough to use this.", Color.white, 1f, 1, GameManager.Instance.player.transform);
             return;
         }
 
-        if (data == null)
-            return;
-
         if (data is MeleeWeaponData)
             animator.SetTrigger("Attack");
         else if (data is RangeWeaponData rangeData)
-            rangeData.InstantiateProjectile(transform.position, 
-                GameManager.Instance.playerMover.handToMouseRotation - 90f, 
+            rangeData.InstantiateProjectile(transform.position,
+                GameManager.Instance.playerMover.handToMouseRotation - 90f,
                 GameManager.Instance.playerMover.handToMouseDirection);
+        else if (data is MagicWeaponData magicData)
+            magicData.UseCurrentSpell();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

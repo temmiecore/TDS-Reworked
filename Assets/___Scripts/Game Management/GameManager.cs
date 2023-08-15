@@ -48,10 +48,12 @@ public class GameManager : MonoBehaviour
     [Header("Floating text prefab")]
     public FloatingText floatingTextObject;
 
-    [Header("Items prefabs lists. Note - index of the item = index of the enum value")]
+    [Header("Items prefabs lists. Index of the item = index of the enum value")]
     public List<GameObject> consumablePrefabs;
     public List<GameObject> artefactPrefabs;
 
+    public int[] vitalityToHealthList;
+    public int[] wisdomToManaList;
 
     void Start()
     {
@@ -113,4 +115,14 @@ public class GameManager : MonoBehaviour
         floatingTextInstance.InstantiateText();
     }
 
+
+    public int CalculateHPFromVitality(int vitality) /// 5-40, 10-50, 20-70, 30-90
+    {
+        return (2 * vitality + 30);
+    }
+
+    public int CalculateManaFromWisdom(int wisdom) /// 5-30, 10-50, 20-90, 30-130
+    {
+        return (4 * wisdom + 10);
+    }
 }

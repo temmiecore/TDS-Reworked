@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,9 +14,9 @@ public class Player: MonoBehaviour
 
     [Header("Mana")]
     public int maxMana;
-    public int mana;
-
-    private float manaDelay;
+    public float mana;
+    [HideInInspector] public bool manaWasUsed;
+    public float manaRestorationSpeed;
 
     [Header("Player parameters")]
     public int vitality;
@@ -24,27 +25,48 @@ public class Player: MonoBehaviour
     public int dexterity;
     public int intelligence;
 
+    [Header("Level parameters")]
+    public int xp;
+
+    public int level;
+    public int levelingPoints;
+
     void Start()
     {
-        
+        mana = maxMana;
     }
 
     void Update()
     {
-        
+        ManaRestoration();
     }
 
     void ManaRestoration()
     {
-        manaDelay += Time.deltaTime;
-
-        if (manaDelay > 1f)
+        if (manaWasUsed)
         {
-            manaDelay = 0f;
-            mana += 1;
+            StartCoroutine(ManaWasUsed());
+            return;
         }
+
+        mana += Time.deltaTime * manaRestorationSpeed; /// Make it faster? 
 
         if (mana > maxMana)
             mana = maxMana;
+    }
+
+    IEnumerator ManaWasUsed()
+    {
+        yield return new WaitForSeconds(1f);
+        manaWasUsed = false;
+    }
+
+    internal void UseMana(float manaUsage)
+    {
+        mana -= manaUsage;
+        manaWasUsed = true;
+
+        if (mana < 0)
+            mana = 0;
     }
 }

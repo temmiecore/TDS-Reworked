@@ -9,12 +9,15 @@ public class Inventory : MonoBehaviour
 
     public List<IConsumableData> consumables;
     public List<IArtefactData> artefacts;
+    public List<ISpellData> spells;
+    public ISpellData currentSpell;
 
     [HideInInspector] public bool isActive;
 
     [Header("Item Cells")]
     public Image[] consumableCells;
     public Image[] artefactCells;
+    public Image[] spellCells;
 
     private void Start()
     {

@@ -10,7 +10,8 @@ public class ClassManager : MonoBehaviour
         GameManager.Instance.player.intelligence = playerClass.intelligence;
         GameManager.Instance.player.wisdom = playerClass.wisdom;
 
-        ///Change player's HP and Mana proportionate to Vitality and Wisdom
+        GameManager.Instance.playerHealthComponent.maxHP = GameManager.Instance.CalculateHPFromVitality(playerClass.vitality);
+        GameManager.Instance.player.maxMana = GameManager.Instance.CalculateManaFromWisdom(playerClass.wisdom);
 
         GameManager.Instance.playerAnimator.runtimeAnimatorController = playerClass.animatorController;
     }
