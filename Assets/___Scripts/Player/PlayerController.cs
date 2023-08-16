@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 {
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -21,6 +21,11 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab))
             OpenInventory();
+
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+            ChangeSpell();
+
+
     }
 
     void Attack()
@@ -33,5 +38,9 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.inventory.ToggleInventory();
     }
 
+    void ChangeSpell()
+    {
+        GameManager.Instance.spellController.ChangeSpell();
+    }
     /// All future actions should be encapsulated in a function.
 }

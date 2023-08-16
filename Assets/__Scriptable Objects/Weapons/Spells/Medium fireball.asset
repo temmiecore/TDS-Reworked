@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d63b899a857c2064cbfa11c28063899f, type: 3}
-  m_Name: Small fireball
+  m_Name: Medium fireball
   m_EditorClassIdentifier: 
   manaUsage: 5
   requiredIntelligence: 1
-  UiIcon: {fileID: -2546660744773203581, guid: 413eda55effbe9c4d9582f0aebc67d42, type: 3}
+  UiIcon: {fileID: 2835781189331011093, guid: 413eda55effbe9c4d9582f0aebc67d42, type: 3}
   fireballPrefab: {fileID: 2286955515501694638, guid: 0143c2b995d4a8e4d95c51c2c563b2f3, type: 3}
-  fireballSpeed: 40
-  fireballDamage: 5
+  fireballSpeed: 80
+  fireballDamage: 6

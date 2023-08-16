@@ -15,13 +15,13 @@ public class MagicWeaponData : IWeaponData
 
     public void UseCurrentSpell()
     {
-        if (GameManager.Instance.player.mana < GameManager.Instance.inventory.currentSpell.manaUsage)
+        if (GameManager.Instance.player.mana < GameManager.Instance.spellController.currentSpell.manaUsage)
             return;
 
-        if (GameManager.Instance.inventory.currentSpell.requiredIntelligence > GameManager.Instance.player.intelligence)
+        if (GameManager.Instance.spellController.currentSpell.requiredIntelligence > GameManager.Instance.player.intelligence)
             return;
 
-        GameManager.Instance.inventory.currentSpell.UseSpell();
-        GameManager.Instance.player.UseMana(GameManager.Instance.inventory.currentSpell.manaUsage);
+        GameManager.Instance.spellController.currentSpell.UseSpell();
+        GameManager.Instance.player.UseMana(GameManager.Instance.spellController.currentSpell.manaUsage);
     }
 }

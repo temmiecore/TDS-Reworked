@@ -10,8 +10,6 @@ public class Inventory : MonoBehaviour
 
     public List<IConsumableData> consumables;
     public List<IArtefactData> artefacts;
-    public List<ISpellData> spells;
-    public ISpellData currentSpell;
 
     [HideInInspector] public bool isActive;
 
@@ -21,7 +19,6 @@ public class Inventory : MonoBehaviour
     [Header("Item cells")]
     public Image[] consumableCells;
     public Image[] artefactCells;
-    public Image[] spellCells;
 
     [Header("Empty cell sprites")]
     public Sprite weaponCellSprite;
@@ -123,6 +120,10 @@ public class Inventory : MonoBehaviour
         if (canvasGroup.alpha == 0f)
         { isActive = true; canvasGroup.alpha = 1f; UpdateInventory(); }
         else
-        { isActive = false; canvasGroup.alpha = 0f; }
+        { 
+            isActive = false; canvasGroup.alpha = 0f;
+            GameManager.Instance.spellController.isActive = false; GameManager.Instance.spellController.canvasGroup.alpha = 0f;
+            GameManager.Instance.spellController.canvasGroup.blocksRaycasts = false;
+        }
     }
 }

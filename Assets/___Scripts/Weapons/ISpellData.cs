@@ -11,4 +11,6 @@ public abstract class ISpellData : ScriptableObject
 
     public float manaUsage;
     public int requiredIntelligence;
+
+    public Sprite UiIcon;
 }

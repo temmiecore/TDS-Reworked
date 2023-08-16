@@ -1,13 +1,16 @@
 fileFormatVersion: 2
-guid: c997a99ca5921964ba9662457b44b74e
+guid: 413eda55effbe9c4d9582f0aebc67d42
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7114018373202829926
-    second: Inventory v3 no text_0
+      213: 876736162076979214
+    second: spells mock_0
   - first:
-      213: 6109599506141092418
-    second: Inventory v3 no text_1
+      213: 2835781189331011093
+    second: spells mock_1
+  - first:
+      213: -2546660744773203581
+    second: spells mock_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -57,7 +60,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: 0
+  spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -109,34 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Inventory v3 no text_0
+      name: spells mock_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 6
-        width: 232
-        height: 116
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a9d94a33bfde54d90800000000000000
-      internalID: -7114018373202829926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Inventory v3 no text_1
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 78
-        width: 46
-        height: 20
+        x: 0
+        y: 1
+        width: 16
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,18 +126,55 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24a117b7168a9c450800000000000000
-      internalID: 6109599506141092418
+      spriteID: e00765ee4eaca2c00800000000000000
+      internalID: 876736162076979214
       vertices: []
       indices: 
       edges: []
       weights: []
-    outline:
-    - - {x: 23.239471, y: 5}
-      - {x: 16, y: 5}
-      - {x: 16, y: 7}
-      - {x: 35, y: 7}
-      - {x: 35, y: 5}
+    - serializedVersion: 2
+      name: spells mock_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5164fc297f7ba5720800000000000000
+      internalID: 2835781189331011093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spells mock_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 1
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3898c50ab8178acd0800000000000000
+      internalID: -2546660744773203581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000

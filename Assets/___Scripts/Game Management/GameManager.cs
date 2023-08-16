@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public Inventory inventory;
     public ItemUseController itemUseController;
     public ClassManager classManager;
+    public SpellController spellController;
 
     [Header("References assigned in inspector")]
     public Health playerHealthComponent;
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
         playerMover = FindObjectOfType<PlayerMover>();
         itemUseController = FindObjectOfType<ItemUseController>();
         classManager = GetComponent<ClassManager>();
+        spellController = FindObjectOfType<SpellController>();
 
         classManager.ApplyClassParameters(playerClass);
     }
