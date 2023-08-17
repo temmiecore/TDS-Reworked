@@ -9,11 +9,6 @@ using UnityEngine;
 [RequireComponent(typeof(Player))]
 public class PlayerController : MonoBehaviour
 {
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -25,6 +20,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
             ChangeSpell();
 
+        if (Input.GetKeyDown(KeyCode.L))
+            OpenLevelupWindow();
 
     }
 
@@ -36,6 +33,11 @@ public class PlayerController : MonoBehaviour
     void OpenInventory()
     {
         GameManager.Instance.inventory.ToggleInventory();
+    }
+
+    void OpenLevelupWindow()
+    {
+        GameManager.Instance.levelupWindowController.ToggleWindow();
     }
 
     void ChangeSpell()

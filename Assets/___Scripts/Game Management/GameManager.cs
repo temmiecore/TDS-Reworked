@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public ItemUseController itemUseController;
     public ClassManager classManager;
     public SpellController spellController;
+    public LevelupWindowController levelupWindowController;
 
     [Header("References assigned in inspector")]
     public Health playerHealthComponent;
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
         itemUseController = FindObjectOfType<ItemUseController>();
         classManager = GetComponent<ClassManager>();
         spellController = FindObjectOfType<SpellController>();
+        levelupWindowController = FindObjectOfType<LevelupWindowController>();
 
         classManager.ApplyClassParameters(playerClass);
     }
