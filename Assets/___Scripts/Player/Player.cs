@@ -27,7 +27,6 @@ public class Player: MonoBehaviour
 
     [Header("Level parameters")]
     public int xp;
-
     public int level;
     public int levelingPoints;
 

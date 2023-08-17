@@ -5,6 +5,7 @@ using Pathfinding;
 
 [RequireComponent(typeof(Transform), typeof(AIPath), typeof(SpriteRenderer))]
 [RequireComponent(typeof(Animator), typeof(Rigidbody2D), typeof(CapsuleCollider2D))]
+[RequireComponent(typeof(Health))]
 public class BTreeController : Tree
 {
     [HideInInspector] public Transform npcTransform;
@@ -19,19 +20,29 @@ public class BTreeController : Tree
     public BehaviourTreeType behaviourTreeType;
     public bool isFriendly;
 
+    [Range(0,10f)]
     public float alertRadius;
+    [Range(0, 10f)]
     public float ignoreRadius;
+    [Range(0, 10f)]
     public float attackRadius;
     public float attackCooldown;
 
-    [Header("- For NPC/Enemies who follow something. -")]
+    [Header("For NPC/Enemies who follow something")]
     public Transform followTarget;
     public float followRadius;
 
-    [Header("TARGET")]
+    [Header("Target")]
     public Transform target;
     public Dictionary<Transform, float> threatList;
     public List<BTreeController> attackersList;
+
+    [Header("Loot table")]
+    public List<GameObject> itemPrefabs;
+    [Range(0, 1f)]
+    public List<float> itemWeights;
+
+    public int droppedXP;
 
     protected override void Start()
     {
@@ -50,6 +61,16 @@ public class BTreeController : Tree
     protected override Node SetupTree()
     {
         return GameManager.Instance.behaviourTreeManager.SetupTree(behaviourTreeType, this);
+    }
+
+    public void DropLoot()
+    {
+        /// Instantiate loot prefabs if their random percentage is lower than their weight
+    }
+
+    public void DropXP()
+    {
+        GameManager.Instance.PlayerAddXP(droppedXP);
     }
 }
 

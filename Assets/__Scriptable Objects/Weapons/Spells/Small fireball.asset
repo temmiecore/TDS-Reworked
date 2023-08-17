@@ -16,5 +16,5 @@ MonoBehaviour:
   requiredIntelligence: 1
   UiIcon: {fileID: -2546660744773203581, guid: 413eda55effbe9c4d9582f0aebc67d42, type: 3}
   fireballPrefab: {fileID: 2286955515501694638, guid: 0143c2b995d4a8e4d95c51c2c563b2f3, type: 3}
-  fireballSpeed: 40
+  fireballSpeed: 60
   fireballDamage: 5

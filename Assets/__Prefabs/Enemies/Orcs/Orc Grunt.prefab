@@ -212,9 +212,11 @@ MonoBehaviour:
   attackCooldown: 1
   followTarget: {fileID: 0}
   followRadius: 0
-  isAlerted: 0
   target: {fileID: 0}
-  aggression: 0
+  attackersList: []
+  itemPrefabs: []
+  itemWeights: []
+  droppedXP: 5
 --- !u!114 &2521466502406033741
 MonoBehaviour:
   m_ObjectHideFlags: 0

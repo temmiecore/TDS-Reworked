@@ -30,7 +30,7 @@ public class Health : MonoBehaviour
         immunityDelay += Time.deltaTime;
     }
 
-    public void RecieveDamage(float damageAmount)
+    public void RecieveDamage(float damageAmount) /// Player method
     {
         if (immunityDelay > immunityCooldown && isDamageable)
         {
@@ -43,11 +43,15 @@ public class Health : MonoBehaviour
             animator?.SetTrigger("RecieveDamage");
 
             if (HP <= 0)
-            { HP = 0; Die(); }
+            { 
+                HP = 0; Die();
+                GetComponent<BTreeController>()?.DropLoot();
+                GetComponent<BTreeController>()?.DropXP();
+            }
         }
     }
 
-    public void RecieveDamage(float damageAmount, BTreeController damageDealer)
+    public void RecieveDamage(float damageAmount, BTreeController damageDealer) /// NPC Method
     {
         if (immunityDelay > immunityCooldown && isDamageable)
         {
@@ -74,7 +78,7 @@ public class Health : MonoBehaviour
                     attacker.attackersList.Remove(tree);
                 }
 
-                Die(); 
+                Die();
             }
         }
     }

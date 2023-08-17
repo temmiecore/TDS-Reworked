@@ -53,8 +53,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> consumablePrefabs;
     public List<GameObject> artefactPrefabs;
 
-    public int[] vitalityToHealthList;
-    public int[] wisdomToManaList;
+    [Header("Player XP to Level table")]
+    public List<int> xpToLevelTable;
 
     void Start()
     {
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
             file.Close();
 
             /// Here SaveState values are assigned to GameManager values, sprites are changed, etc etc
-            
+
             Debug.Log("Game loaded");
         }
         else
@@ -126,5 +126,27 @@ public class GameManager : MonoBehaviour
     public int CalculateManaFromWisdom(int wisdom) /// 5-30, 10-50, 20-90, 30-130
     {
         return (4 * wisdom + 10);
+    }
+
+    public void PlayerAddXP(int xp)
+    {
+        player.xp += xp;
+        /// SAVESTATE
+
+        InstantiateFloatingText("+ " + xp + "XP", Color.yellow, 1f, 1, player.transform);
+
+        if (player.xp >= xpToLevelTable[player.level])
+        {
+            PlayerLevelUp();
+        }
+    }
+
+    public void PlayerLevelUp()
+    {
+        player.level += 1;
+        player.xp -= xpToLevelTable[player.level - 1];
+        InstantiateFloatingText("Level up!", Color.yellow, 1f, 1, player.transform);
+
+        PlayerAddXP(0);
     }
 }

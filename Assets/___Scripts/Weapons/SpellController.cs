@@ -64,7 +64,6 @@ public class SpellController : MonoBehaviour
 
     public void OnSpellPickUp(ISpellData spell)
     {
-        GameManager.Instance.InstantiateFloatingText(spell.name, Color.green, 1f, 1, transform);
         spells.Add(spell);
 
         if (spells.Count == 1)
