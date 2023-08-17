@@ -45,8 +45,12 @@ public class Health : MonoBehaviour
             if (HP <= 0)
             { 
                 HP = 0; Die();
-                GetComponent<BTreeController>()?.DropLoot();
-                GetComponent<BTreeController>()?.DropXP();
+                try
+                {
+                    GetComponent<BTreeController>().DropLoot();
+                    GetComponent<BTreeController>().DropXP();
+                }
+                catch { }
             }
         }
     }

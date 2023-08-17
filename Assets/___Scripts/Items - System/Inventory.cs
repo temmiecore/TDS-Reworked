@@ -70,6 +70,9 @@ public class Inventory : MonoBehaviour
 
     public void OnPickUp(IConsumableData item)
     {
+        if (consumables.Count == consumableCells.Length)
+            return;
+
         consumables.Add(item);
 
         UpdateInventory();
@@ -77,6 +80,9 @@ public class Inventory : MonoBehaviour
 
     public void OnPickUp(IArtefactData item)
     {
+        if (artefacts.Count == artefactCells.Length)
+            return;
+
         artefacts.Add(item);
         item.Activate();
 

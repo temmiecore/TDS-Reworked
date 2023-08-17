@@ -65,7 +65,14 @@ public class BTreeController : Tree
 
     public void DropLoot()
     {
-        /// Instantiate loot prefabs if their random percentage is lower than their weight
+        if (itemPrefabs.Count == 0 || itemWeights.Count != itemPrefabs.Count)
+            return;
+
+        for (int i = 0; i < itemPrefabs.Count; i++)
+        {
+            if (Random.Range(0,1f) < itemWeights[i])
+                Instantiate(itemPrefabs[i], transform.position, transform.rotation);
+        }
     }
 
     public void DropXP()

@@ -214,8 +214,12 @@ MonoBehaviour:
   followRadius: 0
   target: {fileID: 0}
   attackersList: []
-  itemPrefabs: []
-  itemWeights: []
+  itemPrefabs:
+  - {fileID: 3788613256565877624, guid: a90afff0fb9600d4dba83f70ab38d536, type: 3}
+  - {fileID: 6119412946472658684, guid: 7bcab35d2da700146832e9dd20e44e00, type: 3}
+  itemWeights:
+  - 1
+  - 0
   droppedXP: 5
 --- !u!114 &2521466502406033741
 MonoBehaviour:
