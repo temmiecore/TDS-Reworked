@@ -52,8 +52,8 @@ public class NPCWeaponController : MonoBehaviour
             return;
 
         if (!tree.isFriendly && (collision.tag == "Player" || collision.GetComponent<BTreeController>()?.isFriendly == !tree.isFriendly))
-            collision.GetComponent<Health>()?.RecieveDamage(data.damage, tree);
+            collision.GetComponent<Health>()?.ReceiveDamage(data.damage, transform.root);
         else if (tree.isFriendly && collision.GetComponent<BTreeController>()?.isFriendly == !tree.isFriendly)
-            collision.GetComponent<Health>()?.RecieveDamage(data.damage, tree);
+            collision.GetComponent<Health>()?.ReceiveDamage(data.damage, transform.root);
     }
 }

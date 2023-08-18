@@ -16,15 +16,21 @@ public class ItemFloor : MonoBehaviour
     {
         if (data is IConsumableData consumable)
         {
-            GameManager.Instance.inventory.OnPickUp(consumable);
-            GameManager.Instance.InstantiateFloatingText(data.name, Color.white, 1f, Random.Range(2, 5), transform);
-            Destroy(gameObject);
+            if (GameManager.Instance.inventory.OnPickUp(consumable))
+            {
+                GameManager.Instance.InstantiateFloatingText(data.name, Color.white, 1f, Random.Range(2, 5), transform);
+                Destroy(gameObject);
+            }
+            else { GameManager.Instance.InstantiateFloatingText("Not enough space in my backpack.", Color.white, 1f, 1, transform); }
         }
         else if (data is IArtefactData artefact)
         {
-            GameManager.Instance.inventory.OnPickUp(artefact);
-            GameManager.Instance.InstantiateFloatingText(data.name, Color.magenta, 1f, Random.Range(2, 5), transform);
-            Destroy(gameObject);
+            if (GameManager.Instance.inventory.OnPickUp(artefact))
+            {
+                GameManager.Instance.InstantiateFloatingText(data.name, Color.magenta, 1f, Random.Range(2, 5), transform);
+                Destroy(gameObject);
+            }
+            else { GameManager.Instance.InstantiateFloatingText("Not enough space in my backpack.", Color.white, 1f, 1, transform); }
         }
     }
 }

@@ -79,6 +79,35 @@ public class BTreeController : Tree
     {
         GameManager.Instance.PlayerAddXP(droppedXP);
     }
+
+    public void AddThreat(Transform attacker)
+    {
+        if (attacker.TryGetComponent(out BTreeController npcComponent))
+        {
+            threatList[attacker] += 1;
+        }
+    }
+
+    public void OnDeath(Transform attacker)
+    {
+        if (attacker.TryGetComponent(out Player playerComponent))
+        {
+            DropLoot();
+            DropXP();
+        }
+
+        if (attacker.TryGetComponent(out BTreeController npcComponent))
+        {
+            foreach (BTreeController attack in attackersList)
+            {
+                attack.target = null;
+                attack.threatList.Remove(transform);
+                attack.attackersList.Remove(this);
+            }
+        }
+
+        Destroy(gameObject);
+    }
 }
 
 public enum BehaviourTreeType

@@ -68,25 +68,27 @@ public class Inventory : MonoBehaviour
             $"Intelligence: {GameManager.Instance.player.intelligence}";
     }
 
-    public void OnPickUp(IConsumableData item)
+    public bool OnPickUp(IConsumableData item)
     {
         if (consumables.Count == consumableCells.Length)
-            return;
+            return false;
 
         consumables.Add(item);
 
         UpdateInventory();
+        return true;
     }
 
-    public void OnPickUp(IArtefactData item)
+    public bool OnPickUp(IArtefactData item)
     {
         if (artefacts.Count == artefactCells.Length)
-            return;
+            return false;
 
         artefacts.Add(item);
         item.Activate();
 
         UpdateInventory();
+        return true;
     }
 
     public void OnDrop(byte itemType, int cellId) /// 0 - Consumable, 1 - Artefact, 2 - Weapon

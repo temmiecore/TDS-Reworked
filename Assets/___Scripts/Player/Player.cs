@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public class Player: MonoBehaviour
 {
+    public EventHandler OnDamageDealt;
+
     [Header("PlayerMover properties")]
     public Transform hand;
     public float handLength;
@@ -60,7 +62,7 @@ public class Player: MonoBehaviour
         manaWasUsed = false;
     }
 
-    internal void UseMana(float manaUsage)
+    public void UseMana(float manaUsage)
     {
         mana -= manaUsage;
         manaWasUsed = true;
@@ -68,4 +70,8 @@ public class Player: MonoBehaviour
         if (mana < 0)
             mana = 0;
     }
+
+    public void OnDamageDealtHandler()
+    { OnDamageDealt?.Invoke(this, EventArgs.Empty); }
+
 }

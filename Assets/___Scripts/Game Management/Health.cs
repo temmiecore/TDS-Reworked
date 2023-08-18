@@ -15,6 +15,8 @@ public class Health : MonoBehaviour
 
     private Animator animator;
 
+    private Transform lastAttacker;
+
     void Start()
     {
         HP = maxHP;
@@ -30,7 +32,7 @@ public class Health : MonoBehaviour
         immunityDelay += Time.deltaTime;
     }
 
-    public void RecieveDamage(float damageAmount) /// Player method
+    public void ReceiveDamage(float damageAmount, Transform attacker)
     {
         if (immunityDelay > immunityCooldown && isDamageable)
         {
@@ -40,50 +42,17 @@ public class Health : MonoBehaviour
 
             GameManager.Instance.InstantiateFloatingText("-" + damageAmount, Color.red, 1f, Random.Range(2, 5), transform);
 
-            animator?.SetTrigger("RecieveDamage");
+            animator?.SetTrigger("ReceiveDamage");
+
+            lastAttacker = attacker;
+
+            try { GetComponent<BTreeController>().AddThreat(attacker); } catch { }
+
+            if (attacker.TryGetComponent(out Player playerComponent))
+                playerComponent.OnDamageDealtHandler();
 
             if (HP <= 0)
-            { 
-                HP = 0; Die();
-                try
-                {
-                    GetComponent<BTreeController>().DropLoot();
-                    GetComponent<BTreeController>().DropXP();
-                }
-                catch { }
-            }
-        }
-    }
-
-    public void RecieveDamage(float damageAmount, BTreeController damageDealer) /// NPC Method
-    {
-        if (immunityDelay > immunityCooldown && isDamageable)
-        {
-            immunityDelay = 0f;
-
-            HP -= damageAmount;
-
-            GameManager.Instance.InstantiateFloatingText("-" + damageAmount, Color.red, 1f, Random.Range(2, 5), transform);
-
-            animator?.SetTrigger("RecieveDamage");
-            
-            BTreeController tree = GetComponent<BTreeController>();
-            tree.threatList[damageDealer.transform] += 1;
-
-            if (HP <= 0)
-            { 
-                HP = 0;
-
-                /// This is awful
-                foreach (BTreeController attacker in tree.attackersList)
-                {
-                    attacker.target = null;
-                    attacker.threatList.Remove(transform);
-                    attacker.attackersList.Remove(tree);
-                }
-
-                Die();
-            }
+            { HP = 0; Die(); }
         }
     }
 
@@ -91,7 +60,10 @@ public class Health : MonoBehaviour
     {
         lives--;
         if (lives <= 0)
-            Destroy(gameObject);
+        {
+            try { GetComponent<BTreeController>().OnDeath(lastAttacker); } catch { }
+            /// Player death method
+        }
         else
         {
             GameManager.Instance.InstantiateFloatingText("Ankh Shard broken!", Color.green, 1f, Random.Range(2, 5), transform);

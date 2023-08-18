@@ -12,8 +12,6 @@ public class WeaponController : MonoBehaviour
 
     public IWeaponData data;
 
-    public event EventHandler OnDamageDealt;
-
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -76,8 +74,7 @@ public class WeaponController : MonoBehaviour
 
         if (collision.tag == "Enemy" || collision.tag == "Destructable")
         {
-            collision.GetComponent<Health>()?.RecieveDamage(data.damage + GameManager.Instance.player.additionalDamage);
-            OnDamageDealt?.Invoke(this, EventArgs.Empty);
+            collision.GetComponent<Health>().ReceiveDamage(data.damage + GameManager.Instance.player.additionalDamage, transform.root);
         }
     }
 

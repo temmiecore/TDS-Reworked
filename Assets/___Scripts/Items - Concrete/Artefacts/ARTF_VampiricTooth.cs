@@ -8,12 +8,12 @@ public class ARTF_VampiricTooth : IArtefactData
 {
     public override void Activate()
     {
-        GameManager.Instance.playerWeaponController.OnDamageDealt += Vampirism;
+        GameManager.Instance.player.OnDamageDealt += Vampirism;
     }
 
     public override void Deactivate()
     {
-        GameManager.Instance.playerWeaponController.OnDamageDealt -= Vampirism;
+        GameManager.Instance.player.OnDamageDealt -= Vampirism;
     }
 
     public override void Drop()
